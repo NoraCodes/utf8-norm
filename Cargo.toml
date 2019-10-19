@@ -1,0 +1,17 @@
+[package]
+name = "utf8-norm"
+version = "1.0.0"
+authors = ["Leonora Tindall <nora@nora.codes>"]
+edition = "2018"
+license = "GPL-3.0-only"
+description = "Command line tool to validate and normalize UTF-8 data"
+readme = "README"
+homepage = "https://nora.codes/projects/utf8-norm"
+repository = "https://git.nora.codes/nora/utf-norm"
+keywords = ["unicode", "normalize"]
+categories = ["command-line=utilities", "internationalization", "localization", "text-processing"]
+
+[dependencies]
+lapp = "0.4"
+unicode-normalization = "0.1"
+
