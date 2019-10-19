@@ -1,6 +1,6 @@
 utf8-norm, validate and normalize UTF-8 Unicode data
 
-Version 1.0.0 licensed GPLv3. (C) 2019 Leonora Tindall <nora@nora.codes>
+Version 1.0.1 licensed GPLv3. (C) 2019 Leonora Tindall <nora@nora.codes>
 Fast command line Unicode normalization, supporting stream safety transformations as well
 as NFC, NFD, NFKD, and NFKC. Exits with failure if the incoming stream is not valid UTF-8.
 

@@ -20,7 +20,7 @@ dependencies = [
 
 [[package]]
 name = "utf8-norm"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "lapp 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "unicode-normalization 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
