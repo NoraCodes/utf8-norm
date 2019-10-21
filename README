@@ -1,8 +1,12 @@
 utf8-norm, validate and normalize UTF-8 Unicode data
 
-Version 1.0.1 licensed GPLv3. (C) 2019 Leonora Tindall <nora@nora.codes>
+ABOUT
+
+Version 1.1.0 licensed GPLv3. (C) 2019 Leonora Tindall <nora@nora.codes>
 Fast command line Unicode normalization, supporting stream safety transformations as well
 as NFC, NFD, NFKD, and NFKC. Exits with failure if the incoming stream is not valid UTF-8.
+
+USAGE
 
 Usage: utf8-norm [--nfc | --nfd | --nfkc | --nfkd] [--stream-safe] [--crlf] <infile> <outfile>
 
@@ -14,7 +18,12 @@ Usage: utf8-norm [--nfc | --nfd | --nfkc | --nfkd] [--stream-safe] [--crlf] <inf
     -c, --nfc   - write NFC (canonical composition computed from NFD). This is the default.
     -C, --nfkc  - write NFKC (canonical composition computed from NFC).
     -s, --stream-safe   - write stream-safe bytes (Conjoining Grapheme Joiners, UAX15-D4).
-    -V, --version - output version information and exit
+    -b, --buffered  - read the entire input file into memory before operating on it.
+    -V, --version - output version information and exit.
+
+The --buffered option is primarily useful for reading and writing to the same file. It will
+read bytes from the input until end of file and only then begin processing lines of the
+input.
 
 utf8-norm was created at Rust Belt Rust 2019 in Dayton, OH. Thanks to @j41manning for her
 excellent talk regarding Unicode handling in Rust.

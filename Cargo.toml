@@ -1,6 +1,6 @@
 [package]
 name = "utf8-norm"
-version = "1.0.1"
+version = "1.1.0"
 authors = ["Leonora Tindall <nora@nora.codes>"]
 edition = "2018"
 license = "GPL-3.0-only"
@@ -12,6 +12,6 @@ keywords = ["unicode", "normalize"]
 categories = ["command-line-utilities", "internationalization", "localization", "text-processing"]
 
 [dependencies]
-lapp = "0.4"
+lapp = { git = "https://github.com/NoraCodes/lapp", branch = "nora/iofile_paths" }
 unicode-normalization = "0.1"
 

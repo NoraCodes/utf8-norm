@@ -3,7 +3,7 @@
 [[package]]
 name = "lapp"
 version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
+source = "git+https://github.com/NoraCodes/lapp?branch=nora/iofile_paths#0fb2df69ce5262958401214fca0d0f31d62b1062"
 
 [[package]]
 name = "smallvec"
@@ -20,13 +20,13 @@ dependencies = [
 
 [[package]]
 name = "utf8-norm"
-version = "1.0.1"
+version = "1.1.0"
 dependencies = [
- "lapp 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "lapp 0.4.0 (git+https://github.com/NoraCodes/lapp?branch=nora/iofile_paths)",
  "unicode-normalization 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [metadata]
-"checksum lapp 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "60bf485afeba9437a275ad29a9383b03f2978450e7feceffb55be8c0dbad9829"
+"checksum lapp 0.4.0 (git+https://github.com/NoraCodes/lapp?branch=nora/iofile_paths)" = "<none>"
 "checksum smallvec 0.6.10 (registry+https://github.com/rust-lang/crates.io-index)" = "ab606a9c5e214920bb66c458cd7be8ef094f813f20fe77a54cc7dbfff220d4b7"
 "checksum unicode-normalization 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)" = "141339a08b982d942be2ca06ff8b076563cbe223d1befd5450716790d44e2426"

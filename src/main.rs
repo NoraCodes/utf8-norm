@@ -1,6 +1,6 @@
 extern crate lapp;
 extern crate unicode_normalization;
-use std::io::{BufRead, BufReader, BufWriter, Write};
+use std::io::{BufRead, BufReader, BufWriter, Write, Cursor};
 use unicode_normalization::UnicodeNormalization;
 
 // usize because that's the max number of bools in the slice
@@ -16,14 +16,17 @@ fn main() {
     let usage = include_str!("../README");
     let args = lapp::parse_args(&usage);
 
-    let infile = BufReader::new(args.get_infile("infile"));
-    let mut outfile = BufWriter::new(args.get_outfile("outfile"));    
 
     if args.get_bool("version") {
         println!("Version {} licensed GPLv3. (C) 2019 Leonora Tindall <nora@nora.codes>",
             env!("CARGO_PKG_VERSION"));
         std::process::exit(0);
     }
+
+    if !args.get_bool("buffered") && args.get_path("infile") == args.get_path("outfile") {
+        eprintln!("Warning: input and output file are the same. This is not supported without using --buffered, because it would result in removing the file without processing any input.");
+        std::process::exit(128);
+    } 
 
     let nfd = args.get_bool("nfd");
     let nfkd = args.get_bool("nfkd");
@@ -33,10 +36,26 @@ fn main() {
 
     if trues(&[nfd, nfkd, nfc, nfkc]) > 1 {
         eprintln!("--nfd, --nfkd, --nfc, and --nfkc are mutually exclusive.");
-        std::process::exit(1);
+        std::process::exit(128);
     } 
 
-    for line in infile.lines() {
+    // If buffering is needed, we have to read the whole file BEFORE opening it for
+    // writing, or else it will be truncated and all the contents will be lost.
+    let instream: Box<dyn BufRead> = {
+        if args.get_bool("buffered") {
+            let mut buffer = Vec::new();
+            args.get_infile("infile")
+                .read_to_end(&mut buffer)
+                .expect("Could not read input file into buffer. Error");
+            Box::new(Cursor::new(buffer))
+        } else {
+            Box::new(BufReader::new(args.get_infile("infile")))
+        }
+    };
+
+    let mut outfile = BufWriter::new(args.get_outfile("outfile"));    
+
+    for line in instream.lines() {
         let mut line = line.expect("Could not read line from file. Error").clone();
         if args.get_bool("crlf") {
             line.push('\x0D');
